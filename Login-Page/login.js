@@ -1,31 +1,18 @@
-function signup() {
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  if (!name || !email || !password) {
-    alert("Please fill all fields");
-    return;
-  }
-
-  fetch("http://localhost:5000/signup", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ name, email, password })
-  })
-  .then(res => res.json())
-  .then(data => {
-    alert(data.message);
-    window.location.href = "login.html";
-  })
-  .catch(err => console.log(err));
+function togglePassword() {
+    const pass = document.getElementById("password");
+    pass.type = pass.type === "password" ? "text" : "password";
 }
 
-function goLogin() {
-  window.location.href = "login.html";
-}
+function goToNextPage() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
-console.log(name);
-console.log(email);
+    // Simple validation
+    if (email === "" || password === "") {
+        alert("Please fill all fields");
+        return;
+    }
+
+    // ✅ Redirect to HOME PAGE (CORRECT WAY)
+    window.location.href = "../home/home.html";
+}
